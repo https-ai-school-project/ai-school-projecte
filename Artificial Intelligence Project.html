@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artificial Intelligence - School Project</title>
+
+<style>
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        background-color: #f2f6fb;
+        color: #222;
+    }
+
+    header {
+        background: linear-gradient(90deg, #0f4c81, #1e90ff);
+        color: white;
+        padding: 25px;
+        text-align: center;
+    }
+
+    header img {
+        width: 80px;
+        margin-bottom: 10px;
+    }
+
+    section {
+        background: white;
+        margin: 20px;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    h2 {
+        color: #0f4c81;
+    }
+
+    .score {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #0f4c81;
+    }
+
+    .question {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .question button {
+        width: 100%;
+        padding: 10px;
+        margin: 6px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        background: #f7f9fc;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .question button:hover {
+        background-color: #e6eef7;
+    }
+
+    .question button:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    /* 🆕 OPEN-ENDED STYLES */
+    .open-ended {
+        margin-top: 10px;
+    }
+
+    .open-ended input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    .open-ended input:focus {
+        border-color: #0f4c81;
+        outline: none;
+        box-shadow: 0 0 5px rgba(15,76,129,0.3);
+    }
+
+    .check-answer {
+        background: #0f4c81 !important;
+        color: white;
+        margin-top: 8px;
+        width: 100%;
+    }
+
+    .check-answer:hover {
+        background: #1e90ff !important;
+    }
+
+    .correct {
+        background-color: #c8f7c5 !important;
+        border-color: #4CAF50 !important;
+    }
+
+    .wrong {
+        background-color: #f7c5c5 !important;
+        border-color: #f44336 !important;
+    }
+
+    .feedback {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 6px;
+        font-weight: bold;
+    }
+
+    .feedback.correct {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .feedback.wrong {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .team-box {
+        background-color: #eef4fb;
+        padding: 20px;
+        border-left: 5px solid #0f4c81;
+        text-align: left;
+    }
+
+    footer {
+        background-color: #0f4c81;
+        color: white;
+        text-align: center;
+        padding: 15px;
+    }
+
+    @media (max-width: 600px) {
+        header h1 { font-size: 22px; }
+        section { margin: 10px; }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Artificial Intelligence (AI)</h1>
+    <p>High School Project - Multiple Choice + Open-Ended</p>
+</header>
+
+<section>
+    <h2>About Artificial Intelligence</h2>
+    <p>
+        Artificial Intelligence (AI) is a branch of computer science that allows machines
+        to learn, think, and make decisions like humans. AI is used in education,
+        medicine, transportation, and smartphones.
+    </p>
+</section>
+
+<section>
+    <h2>AI Quiz - Test Your Knowledge! (16 Questions)</h2>
+    <div class="score">Score: <span id="score">0</span> / 16</div>
+
+    <!-- MULTIPLE CHOICE QUESTIONS (1-8) -->
+    <div class="question">
+        <p><strong>1.</strong> What does AI stand for?</p>
+        <button onclick="checkMC(this, true)">Artificial Intelligence</button>
+        <button onclick="checkMC(this, false)">Advanced Internet</button>
+    </div>
+
+    <div class="question">
+        <p><strong>2.</strong> Which is an example of AI?</p>
+        <button onclick="checkMC(this, false)">Calculator</button>
+        <button onclick="checkMC(this, true)">Voice Assistant</button>
+    </div>
+
+    <div class="question">
+        <p><strong>3.</strong> Can AI learn from data?</p>
+        <button onclick="checkMC(this, true)">Yes</button>
+        <button onclick="checkMC(this, false)">No</button>
+    </div>
+
+    <div class="question">
+        <p><strong>4.</strong> Is AI used in education?</p>
+        <button onclick="checkMC(this, true)">Yes</button>
+        <button onclick="checkMC(this, false)">No</button>
+    </div>
+
+    <div class="question">
+        <p><strong>5.</strong> Can AI completely replace humans?</p>
+        <button onclick="checkMC(this, false)">Yes</button>
+        <button onclick="checkMC(this, true)">No</button>
+    </div>
+
+    <div class="question">
+        <p><strong>6.</strong> What is Machine Learning?</p>
+        <button onclick="checkMC(this, true)">A way for computers to learn from data</button>
+        <button onclick="checkMC(this, false)">A computer virus</button>
+    </div>
+
+    <div class="question">
+        <p><strong>7.</strong> Is AI used in smartphones?</p>
+        <button onclick="checkMC(this, true)">Yes</button>
+        <button onclick="checkMC(this, false)">No</button>
+    </div>
+
+    <div class="question">
+        <p><strong>8.</strong> Which job uses AI?</p>
+        <button onclick="checkMC(this, true)">Medical diagnosis</button>
+        <button onclick="checkMC(this, false)">Paper notebook</button>
+    </div>
+
+    <!-- 🆕 OPEN-ENDED QUESTIONS (9-16) -->
+    <div class="question">
+        <p><strong>9. </strong> Name one famous AI like ChatGPT or Siri:</p>
+        <div class="open-ended">
+            <input type="text" placeholder="Type your answer..." id="q9">
+            <button class="check-answer" onclick="checkOpen(9, ['chatgpt', 'siri', 'alexa', 'google assistant', 'cortana'])">Check Answer</button>
+            <div id="feedback9" class="feedback" style="display:none;"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>10. </strong> Give one example where AI helps in daily life:</p>
+        <div class="open-ended">
+            <input type="text" placeholder="Type your answer..." id="q10">
+            <button class="check-answer" onclick="checkOpen(10, ['phone', 'smartphone', 'camera', 'voice', 'recommendation', 'navigation', 'maps', 'translation'])">Check Answer</button>
+            <div id="feedback10" class="feedback" style="display:none;"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>11. </strong> What does AI help doctors do?</p>
+        <div class="open-ended">
+            <input type="text" placeholder="Type your answer..." id="q11">
+            <button class="check-answer" onclick="checkOpen(11, ['diagnose', 'diagnosis', 'detect', 'disease', 'treatment'])">Check Answer</button>
+            <div id="feedback11" class="feedback" style="display:none;"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>12. </strong> Name one benefit of AI:</p>
+        <div class="open-ended">
+            <input type="text" placeholder="Type your answer..." id="q12">
+            <button class="check-answer" onclick="checkOpen(12, ['fast', 'faster', 'accurate', 'smart', 'efficient', 'helps', 'learn'])">Check Answer</button>
+            <div id="feedback12" class="feedback" style="display:none;"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>13. </strong> What is "robot" in AI context?</p>
+        <div class="open-ended">
+            <input type="text" placeholder="Type your answer..." id="q13">
+            <button class="check-answer" onclick="checkOpen(13, ['machine', 'smart machine', 'programmable', 'automated'])">Check Answer</button>
+            <div id="feedback13" class="feedback" style="display:none;"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>14. </strong> AI can recognize what in photos?</p>
+        <div class="open-ended">
+            <input type="text" placeholder="Type your answer..." id="q14">
+            <button class="check-answer" onclick="checkOpen(14, ['face', 'faces', 'object', 'objects', 'people', 'animal'])">Check Answer</button>
+            <div id="feedback14" class="feedback" style="display:none;"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>15. </strong> Name one AI company:</p>
+        <div class="open-ended">
+            <input type="text" placeholder="Type your answer..." id="q15">
+            <button class="check-answer" onclick="checkOpen(15, ['google', 'microsoft', 'openai', 'apple', 'amazon', 'ibm'])">Check Answer</button>
+            <div id="feedback15" class="feedback" style="display:none;"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <p><strong>16. </strong> Future of AI will be:</p>
+        <div class="open-ended">
+            <input type="text" placeholder="Type your answer..." id="q16">
+            <button class="check-answer" onclick="checkOpen(16, ['bright', 'good', 'helpful', 'amazing', 'better', 'advanced'])">Check Answer</button>
+            <div id="feedback16" class="feedback" style="display:none;"></div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Share This Project</h2>
+    <p>Scan the QR code to open the website:</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://your-github-pages-link.com" alt="QR Code">
+    <p style="font-size:14px;color:#555;">Share with friends and teachers</p>
+</section>
+
+<section>
+    <h2>Our Team</h2>
+    <div class="team-box">
+        <p><strong>Group Name:</strong> AI Innovators</p>
+        <ul>
+            <li>Bournane Abde Rahim</li>
+            <li>Taleb Narimane</li>
+            <li>Boukchich Fatma zahra</li>
+        </ul>
+        <p><strong>Class:</strong> High School</p>
+        <p><strong>Teacher:</strong> Boudour Nserin</p>
+    </div>
+</section>
+
+<footer>
+    <p>Designed by Aboudi © 2026</p>
+</footer>
+
+<script>
+    let score = 0;
+    const totalQuestions = 16;
+
+    // Multiple Choice Function
+    function checkMC(button, correct) {
+        if (button.classList.contains("correct") || button.classList.contains("wrong")) return;
+        
+        const questionDiv = button.parentElement;
+        const buttons = questionDiv.querySelectorAll('button');
+        buttons.forEach(btn => btn.disabled = true);
+
+        if (correct) {
+            button.classList.add("correct");
+            score++;
+        } else {
+            button.classList.add("wrong");
+            const sibling = Array.from(buttons).find(btn => !btn.classList.contains("wrong"));
+            if (sibling) sibling.classList.add("correct");
+        }
+        
+        updateScore();
+    }
+
+    // 🆕 Open-Ended Function
+    function checkOpen(questionNum, correctAnswers) {
+        const input = document.getElementById(`q${questionNum}`);
+        const button = event.target;
+        const feedback = document.getElementById(`feedback${questionNum}`);
+        
+        if (!input.value.trim()) {
+            alert("Please type your answer first!");
+            return;
+        }
+
+        const userAnswer = input.value.trim().toLowerCase();
+        button.disabled = true;
+        input.disabled = true;
+        input.style.borderColor = '#ccc';
+
+        // Check if answer matches any correct answer (flexible matching)
+        const isCorrect = correctAnswers.some(answer => 
+            userAnswer.includes(answer) || answer.includes(userAnswer)
+        );
+
+        if (isCorrect) {
+            input.classList.add("correct");
+            score++;
+            feedback.textContent = "✅ Correct! Great job!";
+            feedback.className = "feedback correct";
+        } else {
+            input.classList.add("wrong");
+            feedback.textContent = "❌ Try again! Hint: Think about AI examples.";
+            feedback.className = "feedback wrong";
+        }
+        
+        feedback.style.display = "block";
+        updateScore();
+    }
+
+    function updateScore() {
+        document.getElementById("score").innerText = score;
+        
+        // Check if quiz is complete
+        const answeredQuestions = document.querySelectorAll('.correct, .wrong').length;
+        if (answeredQuestions === totalQuestions) {
+            setTimeout(() => {
+                let percentage = Math.round((score / totalQuestions) * 100);
+                let message = percentage >= 85 ? "🎉 Excellent!" : 
+                             percentage >= 70 ? "👍 Great job!" : 
+                             percentage >= 50 ? "👌 Good work!" : "📚 Keep learning!";
+                alert(`Quiz Complete!\nScore: ${score}/${totalQuestions} (${percentage}%)\n${message}`);
+            }, 1000);
+        }
+    }
+
+    // Allow Enter key for open-ended questions
+    document.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && e.target.tagName === 'INPUT') {
+            e.target.parentElement.querySelector('.check-answer').click();
+        }
+    });
+</script>
+
+</body>
+</html>
